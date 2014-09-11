@@ -1,8 +1,26 @@
 var makeStack = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
+  var newStack=Object.create(stackMethods);
+  Object.prototype.amount=0;
+  return newStack;
 };
 
-var stackMethods = {};
+var stackMethods = {
+
+  size:function(){return this.amount;},
+  push:function(val){
+    this[this.amount]=val;
+    this.amount++;
+  },
+  pop:function(){
+    if(this.amount){
+      this.amount--;
+      var result= this[this.amount];
+      delete this[this.amount];
+    }
+    return result;
+  }
+
+
+};
 
 
