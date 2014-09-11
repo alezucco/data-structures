@@ -1,6 +1,6 @@
 var makeStack = function() {
   var newStack=Object.create(stackMethods);
-  Object.prototype.amount=0;
+  newStack.amount=0;
   return newStack;
 };
 

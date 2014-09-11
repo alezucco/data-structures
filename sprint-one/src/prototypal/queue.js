@@ -1,7 +1,7 @@
 var makeQueue = function() {
   var newQueue=Object.create(queueMethods);
-  Object.prototype.older=0;
-  Object.prototype.newer=0;
+  newQueue.older=0;
+  newQueue.newer=0;
   return newQueue;
 };
 
