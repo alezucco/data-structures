@@ -25,7 +25,6 @@ treeMethods.contains = function(target){
     for (var i=0;i<array.length;i++){
 
       if(array[i].value===target){
-        console.log(array[i].value);
         result=true;
       }else if(array[i].children.length>0){
 
