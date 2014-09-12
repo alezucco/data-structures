@@ -6,9 +6,6 @@ var makeBinarySearchTree = function(value){
   return binTree
 };
 makeBinarySearchTree.prototype.insert=function(value){
-  //console.log(this.left);
-  //console.log(this.right)
-
   var searchd= function(node){
     if(node.value===value){
       return;
