@@ -20,8 +20,8 @@ Graph.prototype.addNode = function(newNode, toNode){
 };
 
 Graph.prototype.contains = function(node){
-  if(this[node]!==false){
-    return true;
+  if(this.hasOwnProperty(node)){
+      return true;
   }else{
     return false;
   }
@@ -34,16 +34,15 @@ Graph.prototype.removeNode = function(node){
   //loop > removeEdge(node, i)
   //delete this[node]
 
-  _.each(this[node],function(relation){
-    for (var i=0;i<relation.edge.length;i++){
-      if (relation.edge[i]===node){
-        delete relation.edge[i];
-      }
+  _.each(this[node].edge,function(relation){
+    this.removeEdge(relation, node);
+    if (this[relation].edge.length === 0){
+      delete this[relation];
     }
-
   })
-  delete this.node;
-  this.edge.
+  this.edge.splice(this.edge.indexOf(node),1);
+  delete this[node];
+
   this.amountNodes--;
 };
 
@@ -63,6 +62,16 @@ Graph.prototype.addEdge = function(fromNode, toNode){
 Graph.prototype.removeEdge = function(fromNode, toNode){
   this[fromNode].edge.splice(this[fromNode].edge.indexOf(toNode),1);
   this[toNode].edge.splice(this[toNode].edge.indexOf(fromNode),1);
+  if (this[toNode].edge.length ===0){
+//console.log(this[toNode].edge.length)
+      delete this[toNode];
+  }
+  if (this[fromNode].edge.length ===0){
+//console.log(this[fromNode].edge.length)
+    delete this[fromNode];
+    //console.log(this[fromNode])
+    //console.log(this)
+  }
 };
 
 /*
