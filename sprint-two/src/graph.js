@@ -34,10 +34,16 @@ Graph.prototype.removeNode = function(node){
   //loop > removeEdge(node, i)
   //delete this[node]
 
-  _.each(this[node].edge,function(value,key){
+  _.each(this[node],function(relation){
+    for (var i=0;i<relation.edge.length;i++){
+      if (relation.edge[i]===node){
+        delete relation.edge[i];
+      }
+    }
 
   })
   delete this.node;
+  this.edge.
   this.amountNodes--;
 };
 
