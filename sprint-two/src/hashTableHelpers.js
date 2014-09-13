@@ -30,6 +30,16 @@ var makeLimitedArray = function(limit){
   };
 
   var checkLimit = function(index){
+    var counter=0;
+    for (var i=0;i<this._limit-1;i++){
+      if (this._storage.get(i)!==undefined){
+        counter++;
+      }
+    }
+
+    if(counter>=this._limit*.75){
+      this._limit*=2;
+    }
     if(typeof index !== 'number'){ throw new Error('setter requires a numeric index for its first argument'); }
     if(limit <= index){ throw new Error('Error trying to access an over-the-limit index'); }
   };

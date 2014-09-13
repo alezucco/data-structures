@@ -7,27 +7,29 @@ var makeLinkedList = function(){
     if (list.tail === null){
       list.tail=newNode;
       list.head=newNode;
-    //list.tail === null
-    //list.tail.next -> error
      }else{
-
       list.tail.next= newNode;
+      newNode.prev= list.tail;
       list.tail=newNode;
+
     }
-    //list.tail = 26
-    //26.next = null
-    //list.tail.next = makeNode(value) >> 26 -> 27
-    //list.tail = 27
 
   };
 
   list.removeHead = function(){
     if(list.head!==null){
+      if(list.head.next!==null){
+        list.head.next.prev=null
+      }else{
+        list.tail=null;
+      }
       var removed=list.head;
       list.head = removed.next
       return removed.value;
+
     }
   };
+
 
   list.contains = function(target){
     var search = function(node){
@@ -42,7 +44,33 @@ var makeLinkedList = function(){
     }
     return search(list.head);
   };
+  //extra credit
+   list.addToHead = function(value){
+    var newNode=makeNode(value)
+    if (list.head === null){
+      list.tail=newNode;
+      list.head=newNode;
+     }else{
+      list.head.prev= newNode;
+      newNode.next=list.head;
+      list.head=newNode;
 
+    }
+
+  };
+  //extra credit
+  list.removeTail = function(){
+    if(list.tail!==null){
+      if (list.tail.prev!==null){
+        list.tail.prev.next=null;
+      } else{
+        list.head=null;
+      }
+      var removed=list.tail;
+      list.tail = removed.prev;
+      return removed.value;
+    }
+  };
 
 
   return list;
@@ -53,6 +81,7 @@ var makeNode = function(value){
 
   node.value = value;
   node.next = null;
+  node.prev=null;
 
   return node;
 };
@@ -62,4 +91,6 @@ var makeNode = function(value){
  */
 
 //var 1 = makeNode(12);
+
+
 
